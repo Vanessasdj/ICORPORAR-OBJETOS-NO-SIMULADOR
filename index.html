@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Simulador de Produto</h1>
+
+    <p>Nome do Produto: <input type="text" id="nomeProduto"></p>
+    <p>Preço do Produto: <input type="number" id="precoProduto"></p>
+    <p>Quantidade: <input type="number" id="quantidadeProduto"></p>
+    <button onclick="adicionarProduto()">Adicionar Produto</button>
+
+    <h2>Detalhes do Produto</h2>
+    <p id="detalhesProduto"></p>
+
+    <script>
+
+// Classe Produto
+class Produto {
+            constructor(nome, preco, quantidade) {
+                this.nome = nome;
+                this.preco = preco;
+                this.quantidade = quantidade;
+            }
+
+            // Método para calcular o valor total do produto
+            calcularValorTotal() {
+                return this.preco * this.quantidade;
+            }
+
+            // Método para exibir as informações do produto
+            exibirInformacoes() {
+                return `Produto: ${this.nome} - Preço: R$${this.preco.toFixed(2)} - Quantidade: ${this.quantidade} - Valor Total: R$${this.calcularValorTotal().toFixed(2)}`;
+            }
+        }
+
+        // Função para adicionar um produto e exibir os detalhes
+        function adicionarProduto() {
+            const nome = document.getElementById("nomeProduto").value;
+            const preco = parseFloat(document.getElementById("precoProduto").value);
+            const quantidade = parseInt(document.getElementById("quantidadeProduto").value);
+
+            const produto = new Produto(nome, preco, quantidade);
+            document.getElementById("detalhesProduto").innerText = produto.exibirInformacoes();
+        }
+
+</script>
+    
+</body>
+</html>
